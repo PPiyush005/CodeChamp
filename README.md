@@ -4,7 +4,22 @@ A full-stack, production-grade platform for developers
 to track DSA progress, follow structured learning 
 roadmaps, and prepare for technical interviews.
 
-![CodeChamp Dashboard](https://via.placeholder.com/1200x600?text=CodeChamp+Dashboard)
+## 📸 Screenshots
+
+### Dashboard
+![Dashboard](./screenshots/dashboard.png)
+
+### Roadmap
+![Roadmap](./screenshots/Roadmap.png)
+
+### Blind 75
+![Blind 75](./screenshots/Blind75.png)
+
+### Profile
+![Profile](./screenshots/Profile.png)
+
+### Topics
+![Topics](./screenshots/Topics.png)
 
 ---
 
