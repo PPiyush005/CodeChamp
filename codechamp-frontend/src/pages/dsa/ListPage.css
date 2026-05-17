@@ -1,0 +1,89 @@
+.list-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.list-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  transition: background 0.15s;
+}
+
+.list-row:last-child {
+  border-bottom: none;
+}
+
+.list-row:hover {
+  background: var(--surface2);
+}
+
+.list-title {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.15s;
+  min-width: 200px;
+}
+
+.list-title:hover {
+  color: var(--primary);
+}
+
+.list-topic {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.list-note {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-pill.solved {
+  background: var(--easy-bg);
+  color: var(--easy);
+}
+
+.status-pill.revisit {
+  background: var(--medium-bg);
+  color: var(--medium);
+}
+
+.status-pill.unsolved {
+  background: var(--surface2);
+  color: var(--text-muted);
+}
