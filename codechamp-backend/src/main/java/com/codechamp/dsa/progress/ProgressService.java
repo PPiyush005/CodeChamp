@@ -14,14 +14,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.codechamp.dsa.question.QuestionDTO;
+import com.codechamp.dsa.question.Question.Difficulty;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.time.LocalDateTime;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +38,7 @@ public class ProgressService {
     private final QuestionRepository questionRepository;
     private final TopicRepository topicRepository;
 
-    // Get currently logged in user
+    // Get currently logged-in user
     private User getCurrentUser() {
         String email = SecurityContextHolder
                 .getContext()
@@ -63,37 +69,57 @@ public class ProgressService {
                         )
                 );
 
-        // Find existing progress or create new one
+        // Find existing or create new with UNSOLVED status
         UserQuestionProgress progress =
                 progressRepository
                         .findByUserIdAndQuestionId(
                                 user.getId(), questionId
                         )
-                        .orElse(
-                                UserQuestionProgress.builder()
-                                        .user(user)
-                                        .question(question)
-                                        .isBookmarked(false)
-                                        .build()
-                        );
+                        .orElseGet(() -> {
+                            UserQuestionProgress newProgress =
+                                    new UserQuestionProgress();
+                            newProgress.setUser(user);
+                            newProgress.setQuestion(question);
+                            newProgress.setStatus(
+                                    UserQuestionProgress.Status.UNSOLVED
+                            );
+                            newProgress.setIsBookmarked(false);
+                            return newProgress;
+                        });
 
-        // Update status
-        if (request.getStatus() != null) {
-            UserQuestionProgress.Status newStatus =
-                    UserQuestionProgress.Status
-                            .valueOf(request.getStatus()
-                                    .toUpperCase());
-            progress.setStatus(newStatus);
+        // Update status only if provided
+        if (request.getStatus() != null
+                && !request.getStatus().isEmpty()) {
+            try {
+                UserQuestionProgress.Status newStatus =
+                        UserQuestionProgress.Status
+                                .valueOf(request.getStatus()
+                                        .toUpperCase());
 
-            // Set solved time if marking as solved
-            if (newStatus ==
-                    UserQuestionProgress.Status.SOLVED) {
-                progress.setSolvedAt(LocalDateTime.now());
-                updateStreak(user);
+                if (newStatus ==
+                        UserQuestionProgress.Status.SOLVED
+                        && progress.getStatus() !=
+                        UserQuestionProgress.Status.SOLVED) {
+                    progress.setSolvedAt(
+                            LocalDateTime.now()
+                    );
+                    updateStreak(user);
+                }
+                progress.setStatus(newStatus);
+
+            } catch (IllegalArgumentException e) {
+                // Invalid status value — ignore
             }
         }
 
-        // Update notes
+        // Ensure status is never null before saving
+        if (progress.getStatus() == null) {
+            progress.setStatus(
+                    UserQuestionProgress.Status.UNSOLVED
+            );
+        }
+
+        // Update notes if provided
         if (request.getNotes() != null) {
             progress.setNotes(request.getNotes());
         }
@@ -291,5 +317,50 @@ public class ProgressService {
         }
 
         return heatmap;
+    }
+
+    public List<QuestionDTO> getDailyTestQuestions() {
+        // Use today's date as seed so same questions
+        // appear all day and change at midnight
+        long seed = LocalDate.now().toEpochDay();
+        java.util.Random random = new java.util.Random(seed);
+
+        List<com.codechamp.dsa.question.Question> easy =
+                questionRepository.findByDifficulty(Difficulty.EASY);
+        List<com.codechamp.dsa.question.Question> medium =
+                questionRepository.findByDifficulty(Difficulty.MEDIUM);
+        List<com.codechamp.dsa.question.Question> hard =
+                questionRepository.findByDifficulty(Difficulty.HARD);
+
+        Collections.shuffle(easy, random);
+        Collections.shuffle(medium, random);
+        Collections.shuffle(hard, random);
+
+        List<com.codechamp.dsa.question.Question> daily =
+                new ArrayList<>();
+        if (easy.size() >= 2) daily.addAll(easy.subList(0, 2));
+        if (medium.size() >= 2) daily.addAll(medium.subList(0, 2));
+        if (hard.size() >= 1) daily.addAll(hard.subList(0, 1));
+
+        Collections.shuffle(daily, random);
+
+        return daily.stream()
+                .map(QuestionDTO::from)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    public List<QuestionDTO> getMCQQuestions() {
+        long seed = LocalDate.now().toEpochDay() + 1000;
+        java.util.Random random = new java.util.Random(seed);
+
+        List<com.codechamp.dsa.question.Question> all =
+                questionRepository.findAll();
+
+        Collections.shuffle(all, random);
+
+        return all.stream()
+                .limit(10)
+                .map(QuestionDTO::from)
+                .collect(java.util.stream.Collectors.toList());
     }
 }

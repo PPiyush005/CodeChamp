@@ -1,0 +1,227 @@
+.daily-test-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dt-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dt-icon-box {
+  width: 40px;
+  height: 40px;
+  background: var(--primary-light);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dt-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.dt-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+.dt-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.dt-score {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1rem;
+}
+
+.dt-score-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.dt-score-total {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.dt-toggle {
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+
+.dt-toggle:hover {
+  background: var(--surface2);
+  color: var(--text-primary);
+}
+
+.dt-completed {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--easy-bg);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: var(--easy);
+  font-weight: 500;
+}
+
+.dt-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dt-row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+}
+
+.dt-row:hover {
+  border-color: var(--primary);
+}
+
+.dt-row.solved {
+  background: var(--easy-bg);
+  border-color: rgba(22, 163, 74, 0.2);
+}
+
+.dt-check {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s;
+}
+
+.dt-check:hover {
+  transform: scale(1.1);
+}
+
+.dt-question-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.dt-question-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dt-question-title:hover {
+  color: var(--primary);
+}
+
+.dt-question-title.done {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.dt-question-meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.dt-footer {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.dt-footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dt-challenge-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--primary-light);
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dt-challenge-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.dt-challenge-btn:hover .dt-challenge-title {
+  color: white;
+}
+
+.dt-challenge-btn:hover .dt-challenge-sub {
+  color: rgba(255,255,255,0.8);
+}
+
+.dt-challenge-btn:hover svg {
+  color: white !important;
+}
+
+.dt-challenge-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.dt-challenge-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  transition: color 0.2s;
+}
+
+.dt-challenge-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}

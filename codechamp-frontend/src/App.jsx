@@ -18,7 +18,10 @@ import RevisionPage from './pages/dsa/RevisionPage';
 import Blind75Page from './pages/dsa/Blind75Page';
 import RoadmapPage from './pages/roadmap/RoadmapPage';
 import RoadmapDetailPage from './pages/roadmap/RoadmapDetailPage';
+import MCQPage from './pages/dsa/MCQPage';
 import ProfilePage from './pages/profile/ProfilePage';
+import LandingPage from './pages/LandingPage';
+
 
 function App() {
   return (
@@ -80,8 +83,11 @@ function App() {
           <Route path="/profile" element={
             <ProtectedRoute><ProfilePage /></ProtectedRoute>
           } />
-          <Route path="/" element={
-            <Navigate to="/dashboard" replace />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/mcq" element={
+            <ProtectedRoute>
+              <MCQPage />
+            </ProtectedRoute>
           } />
         </Routes>
       </Router>

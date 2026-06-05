@@ -307,10 +307,11 @@ const getNotes = (questionId) =>
           )}
         </div>
       </div>
-      {activeNote && (
+{activeNote && (
   <NotesModal
     question={activeNote}
     existingNote={getNotes(activeNote.id)}
+    existingStatus={getStatus(activeNote.id)}
     onClose={() => setActiveNote(null)}
     onSave={handleNoteSave}
   />

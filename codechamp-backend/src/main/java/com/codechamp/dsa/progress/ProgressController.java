@@ -85,4 +85,20 @@ public class ProgressController {
                 progressService.getHeatmapData()
         );
     }
+
+    @GetMapping("/daily-test")
+    public ResponseEntity<List<com.codechamp.dsa.question.QuestionDTO>>
+    getDailyTest() {
+        return ResponseEntity.ok(
+                progressService.getDailyTestQuestions()
+        );
+    }
+
+    @GetMapping("/mcq-questions")
+    public ResponseEntity<List<com.codechamp.dsa.question.QuestionDTO>>
+    getMCQQuestions() {
+        return ResponseEntity.ok(
+                progressService.getMCQQuestions()
+        );
+    }
 }

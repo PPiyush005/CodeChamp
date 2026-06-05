@@ -278,14 +278,15 @@ const Blind75Page = () => {
 
       </div>
 
-      {activeNote && (
-        <NotesModal
-          question={activeNote}
-          existingNote={getNotes(activeNote.id)}
-          onClose={() => setActiveNote(null)}
-          onSave={handleNoteSave}
-        />
-      )}
+ {activeNote && (
+  <NotesModal
+    question={activeNote}
+    existingNote={getNotes(activeNote.id)}
+    existingStatus={getStatus(activeNote.id)}
+    onClose={() => setActiveNote(null)}
+    onSave={handleNoteSave}
+  />
+)}
 
     </Layout>
   );

@@ -78,3 +78,15 @@ export const getHeatmapData = async () => {
     .get('/progress/heatmap');
   return response.data;
 };
+
+export const getDailyTestQuestions = async () => {
+  const response = await axiosInstance
+    .get('/progress/daily-test');
+  return response.data;
+};
+
+export const getMCQQuestions = async () => {
+  const response = await axiosInstance
+    .get('/progress/mcq-questions');
+  return response.data;
+};

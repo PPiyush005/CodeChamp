@@ -72,3 +72,31 @@ input, textarea, select { font-family: inherit; outline: none; }
   justify-content: center;
   background: var(--background);
 }
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --primary: #e53e3e;
+  --primary-light: rgba(229, 62, 62, 0.1);
+  --primary-hover: #c53030;
+  --background: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #222535;
+  --border: #2d3148;
+  --border-hover: #3d4268;
+  --text-primary: #f0f2ff;
+  --text-secondary: #8b90b0;
+  --text-muted: #5a5f7a;
+  --easy: #48bb78;
+  --medium: #ed8936;
+  --hard: #fc8181;
+  --easy-bg: rgba(72, 187, 120, 0.1);
+  --medium-bg: rgba(237, 137, 54, 0.1);
+  --hard-bg: rgba(252, 129, 129, 0.1);
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.4);
+  --heatmap-empty: #1e2235;
+  --heatmap-1: #7f1d1d;
+  --heatmap-2: #b91c1c;
+  --heatmap-3: #dc2626;
+  --heatmap-4: #ef4444;
+}

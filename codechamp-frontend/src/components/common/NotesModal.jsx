@@ -4,7 +4,7 @@ import { X, Save, FileText } from 'lucide-react';
 import toast from 'react-hot-toast';
 import './NotesModal.css';
 
-const NotesModal = ({ question, existingNote, onClose, onSave }) => {
+const NotesModal = ({ question, existingNote, existingStatus,onClose, onSave }) => {
   const [note, setNote] = useState(existingNote || '');
   const [saving, setSaving] = useState(false);
 

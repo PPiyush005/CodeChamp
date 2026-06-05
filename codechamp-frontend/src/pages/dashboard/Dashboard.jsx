@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { getDashboardStats } from '../../api/dsaAPI';
 import Layout from '../../components/common/Layout';
+import DailyTest from '../../components/common/DailyTest';
+import Heatmap from '../../components/common/Heatmap';
 import {
   BookOpen, CheckCircle, RotateCcw, Flame,
-  ArrowRight, RefreshCw, Bookmark, Map, FolderOpen
+  ArrowRight, Trophy, ChevronRight
 } from 'lucide-react';
 import './Dashboard.css';
-import Heatmap from '../../components/common/Heatmap';
+import DarkModeToggle from '../../components/common/DarkModeToggle';
+
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -43,21 +46,21 @@ const Dashboard = () => {
 
         {/* Welcome Banner */}
         <div className="welcome-banner">
-          <div className="welcome-text">
-            <h1>Welcome back, {user?.name}!</h1>
-            <p>
-              Keep the momentum going to maintain your{' '}
-              {stats?.currentStreak || 0}-day streak
-              and reach your goal.
-            </p>
-          </div>
-          <button
-            className="btn-primary"
-            onClick={() => navigate('/dsa')}>
-            Continue Practicing
-            <ArrowRight size={16} strokeWidth={2} />
-          </button>
-        </div>
+  <div className="welcome-text">
+    <h1>Welcome back, {user?.name}!</h1>
+    <p>...</p>
+  </div>
+  <div className="welcome-banner-actions">
+    <DarkModeToggle />
+    <button
+      className="btn-primary"
+      onClick={() => navigate('/dsa')}>
+      Continue Practicing
+      <ArrowRight size={16} strokeWidth={2} />
+    </button>
+  </div>
+</div>
+        
 
         {/* Stats Cards */}
         <div className="stats-row">
@@ -128,6 +131,9 @@ const Dashboard = () => {
                 style={{width: `${stats?.completionPercentage || 0}%`}}>
               </div>
             </div>
+
+    
+    
 
             <div className="difficulty-row">
               <div className="diff-item">
@@ -215,70 +221,11 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Quick Access */}
-          <div className="quick-access">
-            <h2>Quick Access</h2>
-            <div className="quick-list">
-              <div className="quick-item"
-                onClick={() => navigate('/revision')}>
-                <div className="quick-icon revision">
-                  <RefreshCw size={18} strokeWidth={1.75}
-                    color="var(--easy)" />
-                </div>
-                <div>
-                  <p className="quick-title">Revision</p>
-                  <p className="quick-sub">
-                    Review past mistakes
-                  </p>
-                </div>
-              </div>
-
-              <div className="quick-item active"
-                onClick={() => navigate('/bookmarks')}>
-                <div className="quick-icon bookmarks">
-                  <Bookmark size={18} strokeWidth={1.75}
-                    color="var(--primary)" />
-                </div>
-                <div>
-                  <p className="quick-title">Bookmarks</p>
-                  <p className="quick-sub">
-                    Saved challenging problems
-                  </p>
-                </div>
-              </div>
-
-              <div className="quick-item"
-                onClick={() => navigate('/roadmap')}>
-                <div className="quick-icon roadmap">
-                  <Map size={18} strokeWidth={1.75}
-                    color="#2563eb" />
-                </div>
-                <div>
-                  <p className="quick-title">Roadmaps</p>
-                  <p className="quick-sub">
-                    Guided learning paths
-                  </p>
-                </div>
-              </div>
-
-              <div className="quick-item"
-                onClick={() => navigate('/topics')}>
-                <div className="quick-icon topics">
-                  <FolderOpen size={18} strokeWidth={1.75}
-                    color="#d97706" />
-                </div>
-                <div>
-                  <p className="quick-title">Topics</p>
-                  <p className="quick-sub">
-                    Browse by category
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Daily Test */}
+          <DailyTest />
+          <Heatmap />
         </div>
       </div>
-    <Heatmap />
     </Layout>
   );
 };
