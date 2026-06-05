@@ -141,3 +141,106 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# ========================================
+# BACKEND - Spring Boot / Maven / Java
+# ========================================
+
+# Maven build output
+codechamp-backend/target/
+codechamp-backend/*.jar
+codechamp-backend/*.war
+codechamp-backend/*.class
+
+# Maven wrapper
+codechamp-backend/.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
+codechamp-backend/.idea/
+codechamp-backend/*.iml
+codechamp-backend/*.iws
+codechamp-backend/*.ipr
+codechamp-backend/out/
+
+# Spring Boot application properties with secrets
+codechamp-backend/src/main/resources/application-prod.properties
+codechamp-backend/src/main/resources/application-local.properties
+
+# Eclipse
+codechamp-backend/.classpath
+codechamp-backend/.project
+codechamp-backend/.settings/
+
+# VS Code Java
+codechamp-backend/.vscode/
+
+# ========================================
+# FRONTEND - React / Vite / Node
+# ========================================
+
+# Dependencies
+codechamp-frontend/node_modules/
+
+# Build output
+codechamp-frontend/dist/
+codechamp-frontend/dist-ssr/
+codechamp-frontend/build/
+
+# Environment variables
+codechamp-frontend/.env
+codechamp-frontend/.env.local
+codechamp-frontend/.env.development
+codechamp-frontend/.env.production
+codechamp-frontend/.env.test
+
+# Vite cache
+codechamp-frontend/.vite/
+
+# ESLint cache
+codechamp-frontend/.eslintcache
+
+# VS Code
+codechamp-frontend/.vscode/
+
+# npm logs
+codechamp-frontend/npm-debug.log*
+codechamp-frontend/yarn-debug.log*
+codechamp-frontend/yarn-error.log*
+codechamp-frontend/pnpm-debug.log*
+
+# ========================================
+# OPERATING SYSTEM
+# ========================================
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+
+# ========================================
+# Credentials
+# ========================================
+
+# Database credentials
+*.properties.local
+secrets.properties
+
+# JWT secrets
+jwt.properties
+
+# Any key files
+*.key
+*.pem
+*.p12
+*.jks
