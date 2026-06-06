@@ -1,5 +1,6 @@
 package com.codechamp.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -19,7 +20,9 @@ public class CorsConfig {
         config.setAllowCredentials(true);
         config.setAllowedOrigins(Arrays.asList(
                 "http://localhost:5173",
-                "http://localhost:3000"
+                "http://localhost:3000",
+                "https://codechamp.vercel.app",
+                "https://codechamp-frontend.vercel.app"
         ));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowedMethods(Arrays.asList(
@@ -27,8 +30,7 @@ public class CorsConfig {
                 "DELETE", "OPTIONS", "PATCH"
         ));
         config.setExposedHeaders(Arrays.asList(
-                "Authorization",
-                "Content-Type"
+                "Authorization", "Content-Type"
         ));
 
         UrlBasedCorsConfigurationSource source =
