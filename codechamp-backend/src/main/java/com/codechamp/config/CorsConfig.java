@@ -23,6 +23,7 @@ public class CorsConfig {
                 "http://localhost:3000",
                 "https://codechamp.vercel.app",
                 "https://codechamp-frontend.vercel.app"
+                "https://code-champ-self.vercel.app"
         ));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowedMethods(Arrays.asList(
